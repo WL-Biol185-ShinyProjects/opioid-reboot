@@ -1,0 +1,78 @@
+---
+title: 'Choro2: OD by State'
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+
+# From http://eric.clst.org/Stuff/USGeoJSON and
+# https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents
+
+
+library(ggplot2)
+library(dplyr)
+library(leaflet)
+library(rgdal)
+
+
+ODrateState <- X2013_2015_death_data
+
+
+names(ODrateState)[names(ODrateState) == 'State'] <- 'X1'
+ODState <- left_join(ODrateState, StateAbbrev, by = "X1")
+
+
+write.table(ODState, file = "ODState.txt")
+names(ODState)[names(ODState) == 'State'] <- 'NAME'
+
+map  <- rgdal::readOGR("gz_2010_us_040_00_5m.json", "OGRGeoJSON")
+data <- read.table("ODState.txt")
+```
+
+```{r}
+merged   <- left_join(map@data, data, by = c("NAME" = "State"))
+map@data <- merged
+
+View(merged)
+```
+
+
+```{r}
+library(leaflet)
+
+bins <- c(0,11,13.5,16,18.5,21,41.5)
+pal  <- colorBin("YlOrRd", map@data$X2015Rate.x, bins=bins)
+
+  
+leaflet(data = map) %>%
+  setView(-96, 37.8, 4) %>%
+  addTiles()        %>%
+  addPolygons(
+    fillColor = ~pal(X2015Rate.x),
+    weight = 2,
+    opacity = 1,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.7)
+    # highlight = highlightOptions(
+    # weight = 5,
+    # color = "#666",
+    # dashArray = "",
+    #   fillOpacity = 0.7,
+    #   bringToFront = TRUE))
+    # label = labels
+    # labelOptions = labelOptions(
+    #   style = list("font-weight" = "normal", padding = "3px 8px"),
+    #   textsize = "15px",
+    #   direction = "auto")))
+
+```
+
+
+These rates are age-adjusted rates per 100,000
+
+Age adjustment can make the different groups more comparable. A "standard" population distribution is used to adjust death and hospitalization rates. The age-adjusted rates are rates that would have existed if the population under study had the same age distribution as the "standard" population.
