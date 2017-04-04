@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+
+odCT<- readr::read_csv("dataSets/odCT.csv")
+
+odCT %>%
+  filter(Heroin == "Y" | AnyOpioid == "Y") %>%
+  ggplot(aes(Sex)) + geom_bar()
+
+
+odCT %>%
+  filter(Heroin == "Y" | AnyOpioid == "Y") %>%
+  filter(Race == "Black" | Race == "Hispanic, White" | Race == "White") %>%
+  ggplot(aes(Race)) + geom_bar()
+#Above, general demographic trends for deadly overdoses in CT by race and sex. 
+```

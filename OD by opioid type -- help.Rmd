@@ -1,0 +1,45 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+
+odCT<- readr::read_csv("dataSets/odCT.csv")
+
+HeroinCount <- odCT %>%
+   count(Heroin == "Y")
+
+FentCount <- odCT %>%
+   count(Fentanyl == "Y")
+
+OxyCount <- odCT %>%
+  count(Oxycodone == "Y")
+  
+MethadCount <- odCT %>%
+   count(Methadone == "Y")
+
+MorphineCount <- odCT %>%
+   count(`Morphine (not heroin)` == "Y")
+
+# View(HeroinCount)
+# View(FentCount)
+# View(OxyCount)
+# View(MethadCount)
+# View(MorphineCount)
+
+ODbyDrug <- readr::read_csv("dataSets/ODbyDrug.csv")
+
+ODbyDrug %>% 
+  ggplot(aes(Drug, Odnumber)) + geom_bar(stat='identity')
+
+
+```

@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+
+odCT<- readr::read_csv("dataSets/odCT.csv")
+
+odCT %>%
+  filter(Heroin == "Y") %>%
+  filter(Location == "Residence" | Location == "Hospital" | Location == "Other") %>%
+  ggplot(aes(Location)) + geom_bar()
+```
+#This bar graph shows where overdoses most frequently occur. Most often, heroin addicts overdose in their home, making the case for preventative #Naloxone prescriptions for emergency situations.
