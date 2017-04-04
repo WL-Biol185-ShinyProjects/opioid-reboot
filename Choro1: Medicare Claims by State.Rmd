@@ -19,6 +19,9 @@ library(dplyr)
 library(leaflet)
 library(rgdal)
 
+natlClaims <- readr::read_csv("dataSets/natlClaims.csv")
+stateAbbrev <- readr::read_csv("dataSets/stateAbbrev.csv")
+
 
 OpiClaimsbyState <- natlClaims %>%
   group_by(ProviderState) %>%
