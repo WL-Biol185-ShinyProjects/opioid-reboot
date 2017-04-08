@@ -16,6 +16,7 @@ library(tidyverse)
 #odCT<- read.csv("~/opioid-reboot/odCT.csv")
 #TreatmentCT <- read.csv("~/opioid-reboot/TreatmentCT.csv")
 ODbyDrug <- read_csv("~/opioid-reboot/ODbyDrug.csv")
+tidyCBS <- read_csv("~/opioid-reboot/changeByStateTable.csv")
 #Building important things for choro 
 # OpiClaimsbyState <- natlClaims %>%
 #   group_by(ProviderState) %>%
@@ -131,6 +132,20 @@ shinyServer(function(input, output){
       ggplot(aes(Race)) + geom_bar()
   })
   #RACIAL DEMOGAPHIC GRAPH END
+  
+  #PRESCRIBERS BY STATE START
+  output$prescribersByState<- renderPlot({
+    ggplot(tidyCBS, aes(State_Abbreviation, Avg_Part_D_Prescribers, fill = Avg_Opioid_Prescribing_Rate)) + 
+    geom_bar(stat = 'identity') + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) })
+  #PRESRCIBERS BY STATE END 
+  
+  #CLAIMS BY STATE START 
+  output$claimsByState<- renderPlot({
+    ggplot(tidyCBS, aes(State_Abbreviation, Avg_Opioid_Claims, fill = Avg_Opioid_Prescribing_Rate)) + 
+    geom_bar(stat = 'identity') + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1))})
+  #CLAIMS BY STATE END
   
   #MEDICARE CLAIMS BY STATE CHORO START
   
