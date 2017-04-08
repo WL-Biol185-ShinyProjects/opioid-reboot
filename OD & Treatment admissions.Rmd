@@ -47,7 +47,7 @@ TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreat
   
 
 fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
-summary(fit)
+#summary(fit)
 coef(fit)
   
 TreatmentOD %>%
