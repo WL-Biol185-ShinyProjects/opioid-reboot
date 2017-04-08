@@ -1,21 +1,10 @@
----
-title: "Untitled"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
-
-```{r}
 library(ggplot2)
 library(dplyr)
 library(tidyverse)
 
 odCT <- read_csv("~/opioid-reboot/odCT.csv")
 TreatmentCT <- read_csv("~/opioid-reboot/TreatmentCT.csv")
+stateAbbrev <- read_csv("~/opioid-reboot/stateAbbrev.csv")
 
 AdmissionsbyTown <- TreatmentCT %>%
   group_by(Town) %>%
@@ -44,18 +33,16 @@ TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
 names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
 names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
 TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
-  
+
 
 fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
 #summary(fit)
 coef(fit)
-  
-TreatmentOD %>%
+
+CTODTreatmentComparison<-TreatmentOD %>%
   filter(Overdoses > 10)%>%
   ggplot(aes(AddictionTreatmentAdmissions, Overdoses, color = Town)) + geom_point() +
   geom_abline(slope = coef(fit)[2], intercept = coef(fit)[1])
-  
-#may need to remove filter once checklist is available in shiny
 
-```
+#may need to remove filter once checklist is available in shiny
 

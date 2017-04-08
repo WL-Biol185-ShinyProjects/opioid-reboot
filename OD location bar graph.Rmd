@@ -11,8 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(dplyr)
 library(tidyverse)
+library(readr)
 
-odCT<- readr::read_csv("dataSets/odCT.csv")
+odCT<- read_csv("~/opioid-reboot/odCT.csv")
 
 odCT %>%
   filter(Heroin == "Y") %>%
