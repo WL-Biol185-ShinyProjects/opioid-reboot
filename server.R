@@ -148,25 +148,25 @@ shinyServer(function(input, output){
   #CLAIMS BY STATE END
   
   #MEDICARE CLAIMS BY STATE CHORO START
-  
+  output$choroClaims<- renderLeaflet({
    #
-  # # where issue is?
- # merged   <- left_join(map@data, data, by = c("NAME" = "State"))
- #  map@data <- merged
- #  bins <- c(0,100000,500000,1000000,1500000,2500000,5000000,Inf)
- #  pal  <- colorBin("YlOrRd", map@data$TotalClaims, bins=bins)
- #  output$medicareClaimsByState <- renderLeaflet({ 
- # leaflet(data = map) %>%
- #    setView(-96, 37.8, 4) %>%
- #    addTiles()        %>%
- #    addPolygons(
- #      fillColor = ~pal(TotalClaims),
- #      weight = 2,
- #      opacity = 1,
- #      color = "white",
- #      dashArray = "3",
- #      fillOpacity = 0.7)
- #  })
+  # where issue is?
+ merged   <- left_join(map@data, data, by = c("NAME" = "State"))
+  map@data <- merged
+  bins <- c(0,100000,500000,1000000,1500000,2500000,5000000,Inf)
+  pal  <- colorBin("YlOrRd", map@data$TotalClaims, bins=bins)
+  leaflet( map) %>%
+#  leaflet(merged)%>%
+     setView(-96, 37.8, 4) %>%
+     addTiles()        %>%
+     addPolygons(
+       fillColor = ~pal(TotalClaims),
+       weight = 2,
+       opacity = 1,
+       color = "white",
+       dashArray = "3",
+       fillOpacity = 0.7)
+   })
   #MEDICARE CLAIMS BY STATE CHORO END
  })
   

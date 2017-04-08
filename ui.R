@@ -29,12 +29,13 @@ library(shiny)
       
       #CHORO MEDICARE CLAIMS BY STATE START
       mainPanel(
-        #plotOutput("CTODLocations"),
+        #plotOutput("CTODLocations")
         #plotOutput("CTODTreatmentComparison")
         #plotOutput("racialDemographics")
         #plotOutput("CTODTreatmentComparison")
-        plotOutput("prescribersByState")
+      #plotOutput("prescribersByState")
         #plotOutput("claimsByState")
+        leafletOutput("choroClaims")
         #Drug comparisons is not working
         #plotOutput("drugComparisons")
       )

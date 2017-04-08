@@ -11,7 +11,7 @@
 "10" "CO" 828060 "Colorado"
 "11" "CT" 462139 "Connecticut"
 "12" "DC" 50842 "District of Columbia"
-"13" "DE" 168024 "Delaware"
+"13" "DE" 168024 "Delaware "
 "14" "FL" 3845509 "Florida"
 "15" "GA" 2046232 "Georgia"
 "16" "GU" 856 NA
