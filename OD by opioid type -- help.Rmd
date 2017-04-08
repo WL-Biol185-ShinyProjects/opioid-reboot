@@ -12,8 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(dplyr)
 library(tidyverse)
+library(readr)
 
-odCT<- readr::read_csv("dataSets/odCT.csv")
+odCT<- read_csv("~/opioid-reboot/odCT.csv")
 
 HeroinCount <- odCT %>%
    count(Heroin == "Y")
@@ -36,7 +37,7 @@ MorphineCount <- odCT %>%
 # View(MethadCount)
 # View(MorphineCount)
 
-ODbyDrug <- readr::read_csv("dataSets/ODbyDrug.csv")
+ODbyDrug <- read_csv("~/opioid-reboot/ODbyDrug.csv")
 
 ODbyDrug %>% 
   ggplot(aes(Drug, Odnumber)) + geom_bar(stat='identity')

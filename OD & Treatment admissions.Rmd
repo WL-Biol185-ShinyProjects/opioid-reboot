@@ -14,10 +14,10 @@ library(ggplot2)
 library(dplyr)
 library(tidyverse)
 
-odCT<- readr::read_csv("dataSets/odCT.csv")
-treatCT <- readr::read_csv("dataSets/TreatmentCT.csv")
+odCT <- read_csv("~/opioid-reboot/odCT.csv")
+TreatmentCT <- read_csv("~/opioid-reboot/TreatmentCT.csv")
 
-AdmissionsbyTown <- treatCT %>%
+AdmissionsbyTown <- TreatmentCT %>%
   group_by(Town) %>%
   summarise(SumAdmissions = sum(Admissions))
 
@@ -47,7 +47,7 @@ TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreat
   
 
 fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
-summary(fit)
+#summary(fit)
 coef(fit)
   
 TreatmentOD %>%
