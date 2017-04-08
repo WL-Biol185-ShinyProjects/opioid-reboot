@@ -17,6 +17,8 @@ library(tidyverse)
 #TreatmentCT <- read.csv("~/opioid-reboot/TreatmentCT.csv")
 ODbyDrug <- read_csv("~/opioid-reboot/ODbyDrug.csv")
 tidyCBS <- read_csv("~/opioid-reboot/changeByStateTable.csv")
+merged <- read_csv("~/opioid-reboot/merged.txt")
+merged2 <- read_csv("~/opioid-reboot/merged2.txt")
 #Building important things for choro 
 # OpiClaimsbyState <- natlClaims %>%
 #   group_by(ProviderState) %>%
@@ -29,7 +31,6 @@ tidyCBS <- read_csv("~/opioid-reboot/changeByStateTable.csv")
 # map  <- rgdal::readOGR("gz_2010_us_040_00_5m.json", "OGRGeoJSON")
 # data <- read.table("ClaimsbyState.txt", stringsAsFactors = FALSE)
 # END OF BUILDING IMPORTANT THINGGS FOR MEDICARE CLAIMS BY STATE CHORO
-
 #BEGINING OF IMPORTANT THINGS OF IMPORTANT ODTREATMEANTADMINSCT
 
 AdmissionsbyTown <- TreatmentCT %>%
@@ -148,26 +149,54 @@ shinyServer(function(input, output){
   #CLAIMS BY STATE END
   
   #MEDICARE CLAIMS BY STATE CHORO START
-  output$choroClaims<- renderLeaflet({
-   #
-  # where issue is?
- merged   <- left_join(map@data, data, by = c("NAME" = "State"))
-  map@data <- merged
-  bins <- c(0,100000,500000,1000000,1500000,2500000,5000000,Inf)
-  pal  <- colorBin("YlOrRd", map@data$TotalClaims, bins=bins)
-  leaflet( map) %>%
-#  leaflet(merged)%>%
-     setView(-96, 37.8, 4) %>%
-     addTiles()        %>%
-     addPolygons(
-       fillColor = ~pal(TotalClaims),
-       weight = 2,
-       opacity = 1,
-       color = "white",
-       dashArray = "3",
-       fillOpacity = 0.7)
-   })
+#   output$choroClaims<- renderLeaflet({
+#    #
+#   # where issue is?
+#  #merged   <- left_join(map@data, data, by = c("NAME" = "State"))
+#   map@data <- merged
+#   bins <- c(0,100000,500000,1000000,1500000,2500000,5000000,Inf)
+#   pal  <- colorBin("YlOrRd", map@data$TotalClaims, bins=bins)
+#   leaflet( map) %>%
+# #  leaflet(merged)%>%
+#      setView(-96, 37.8, 4) %>%
+#      addTiles()        %>%
+#      addPolygons(
+#        fillColor = ~pal(TotalClaims),
+#        weight = 2,
+#        opacity = 1,
+#        color = "white",
+#        dashArray = "3",
+#        fillOpacity = 0.7)
+#    })
   #MEDICARE CLAIMS BY STATE CHORO END
+  
+  #OD CHORO START
+  # bins <- c(0,11,13.5,16,18.5,21,41.5)
+  # pal  <- colorBin("YlOrRd", map@data$rate2015.x, bins=bins)
+  # 
+  # output$choroOD<- renderLeaflet({
+  # leaflet(data = map) %>%
+  #   setView(-96, 37.8, 4) %>%
+  #   addTiles()        %>%
+  #   addPolygons(
+  #     fillColor = ~pal(rate2015.x),
+  #     weight = 2,
+  #     opacity = 1,
+  #     color = "white",
+  #     dashArray = "3",
+  #     fillOpacity = 0.7)
+  # highlight = highlightOptions(
+  #   weight = 5,
+  #   color = "#666",
+  #   dashArray = "",
+  #   fillOpacity = 0.7,
+  #   bringToFront = TRUE)
+  # label = labels
+  # labelOptions = labelOptions(
+  #   style = list("font-weight" = "normal", padding = "3px 8px"),
+  #   textsize = "15px",
+  #   direction = "auto")})
+  #OD CHORO END
  })
   
   
