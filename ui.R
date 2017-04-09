@@ -33,12 +33,12 @@ source("dash.R")
     
       #CHORO MEDICARE CLAIMS BY STATE START
       #mainPanel(
-        #plotOutput("CTODLocations")
-        #plotOutput("CTODTreatmentComparison")
-        #plotOutput("racialDemographics")
-        #plotOutput("CTODTreatmentComparison")
-      #plotOutput("prescribersByState")
-        #plotOutput("claimsByState")
+        #plotOutput("CTODLocations") on CT tab 
+        #plotOutput("CTODTreatmentComparison") on CT tab
+        #plotOutput("racialDemographics") on demographics tab
+        #plotOutput("CTODTreatmentComparison") on contributing factors tab
+      #plotOutput("prescribersByState") on national tab
+        #plotOutput("claimsByState")  on national tab
         #leafletOutput("choroClaims")
        #leafletOutput("choroOD")
         #Drug comparisons is not working
