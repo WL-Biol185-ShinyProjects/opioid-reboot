@@ -1,4 +1,5 @@
 library(shiny)
+source("dash.R")
 #source("choroMedicareClaimsByState.R") 
 #source("ODTreatmeantAdminsCT.R")
 #source("ODByOpioidType.R")
@@ -26,10 +27,13 @@ library(shiny)
       #  plotOutput("histPlot")
      # )
       #TEST HIST PLOT END
-      
+    #Creates dashboard
+    dashboardPage(title ="Local Factors Contributing to Opioid Overdoses in Connecticut", skin = "black",
+                  header, sidebar, body)
+    
       #CHORO MEDICARE CLAIMS BY STATE START
-      mainPanel(
-        plotOutput("CTODLocations")
+      #mainPanel(
+        #plotOutput("CTODLocations")
         #plotOutput("CTODTreatmentComparison")
         #plotOutput("racialDemographics")
         #plotOutput("CTODTreatmentComparison")
@@ -39,6 +43,8 @@ library(shiny)
        #leafletOutput("choroOD")
         #Drug comparisons is not working
         #plotOutput("drugComparisons")
-      )
+     # )
       #CHOROR MEDICARE CLAIMS BY STATE END
   )
+  
+

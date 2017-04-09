@@ -111,6 +111,12 @@ shinyServer(function(input, output){
     ggplot(aes(Location)) + geom_bar() })
   #OD LOCATION BAR GRAPH END
   
+  #CT OD TREATMENTS ADMINS INPUT PANEL START
+  # inputPanel(
+  #   selectInput("town", label = "Town", choices = unique(TreatmentCT$Town))
+  # )
+  #INPUT PANEL END
+  
   #ODTREATMEANTSADMINSTCT GRAPH START
   output$CTODTreatmentComparison <- renderPlot({
   TreatmentOD %>%
