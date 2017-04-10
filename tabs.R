@@ -1,10 +1,10 @@
 library(shiny)
 library(shinydashboard)
 library(shinythemes)
-source("national-opioid-trends.R")
-source("Connecticut-opioid-trends.R")
-source("demographics-and-drugs.R")
-source("contributing-factors.R")
+# source("national-opioid-trends.R")
+# source("Connecticut-opioid-trends.R")
+# source("demographics-and-drugs.R")
+# source("contributing-factors.R")
 
 tabs <- # First tab content
   tabItems(

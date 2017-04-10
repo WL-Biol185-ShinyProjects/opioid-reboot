@@ -138,7 +138,9 @@ library(dplyr)</code></pre>
 <pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
 <pre><code>## filter(): dplyr, stats
 ## lag():    dplyr, stats</code></pre>
-<pre class="r"><code>odCT&lt;- readr::read_csv(&quot;dataSets/odCT.csv&quot;)</code></pre>
+<pre class="r"><code>library(readr)
+
+odCT&lt;- read_csv(&quot;~/opioid-reboot/odCT.csv&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_character(),

@@ -1,9 +1,9 @@
-source("tabs.R")
+
 library(shiny)
 library(shinydashboard)
 library(shinythemes)
 #source("national-opioid-trends.R")
-source("tabs.R")
+# source("tabs.R")
 
 #fluidPage(
 #titlePanel("Local Factors Contributing to Opioid Overdoses in Connecticut"),
@@ -18,4 +18,13 @@ sidebar<- dashboardSidebar(
     menuItem("Demographics and Drugs", tabName = "demographics", icon = icon("pencil"), badgeColor = "maroon"),
     menuItem("Contributing Factors", tabName = "factors", icon = icon("th"), badgeColor = "maroon")
   ))
-body<-dashboardBody(tabs)
+
+body <- dashboardBody(tabItems( tabItem(tabName = "national", 
+                                        h2("National Opioid Trends"),
+                                        fluidRow(plotOutput("claimsByState", height = 250, width = 1000),
+                                                 plotOutput("prescribersByState", height = 250, width = 1000)
+                                                )
+                                        )
+  
+                              )
+                     )
