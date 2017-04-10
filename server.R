@@ -20,16 +20,16 @@ tidyCBS <- read.csv("~/opioid-reboot/changeByStateTable.csv")
 merged <- read.csv("~/opioid-reboot/merged.txt")
 merged2 <- read.csv("~/opioid-reboot/merged2.txt")
 #Building important things for choro
-# OpiClaimsbyState <- natlClaims %>%
-#   group_by(ProviderState) %>%
-#   summarise(TotalClaims = sum(TotalClaimCount))
-# TotalClaims <-select(OpiClaimsbyState,TotalClaims)
-# names(OpiClaimsbyState)[names(OpiClaimsbyState) == 'ProviderState'] <- 'X1'
-# OpiState <- left_join(OpiClaimsbyState, stateAbbrev, by = "X1")
-# write.table(OpiState, file = "ClaimsbyState.txt")
-# names(OpiState)[names(OpiState) == 'State'] <- 'NAME'
-# map  <- rgdal::readOGR("gz_2010_us_040_00_5m.json", "OGRGeoJSON")
-# data <- read.table("ClaimsbyState.txt", stringsAsFactors = FALSE)
+OpiClaimsbyState <- natlClaims %>%
+  group_by(ProviderState) %>%
+  summarise(TotalClaims = sum(TotalClaimCount))
+TotalClaims <-select(OpiClaimsbyState,TotalClaims)
+names(OpiClaimsbyState)[names(OpiClaimsbyState) == 'ProviderState'] <- 'X1'
+OpiState <- left_join(OpiClaimsbyState, stateAbbrev, by = "X1")
+write.table(OpiState, file = "ClaimsbyState.txt")
+names(OpiState)[names(OpiState) == 'State'] <- 'NAME'
+map  <- rgdal::readOGR("gz_2010_us_040_00_5m.json", "OGRGeoJSON")
+data <- read.table("ClaimsbyState.txt", stringsAsFactors = FALSE)
 # END OF BUILDING IMPORTANT THINGGS FOR MEDICARE CLAIMS BY STATE CHORO
 #BEGINING OF IMPORTANT THINGS OF IMPORTANT ODTREATMEANTADMINSCT
 
@@ -179,7 +179,7 @@ shinyServer(function(input, output){
   #OD CHORO START
   # bins <- c(0,11,13.5,16,18.5,21,41.5)
   # pal  <- colorBin("YlOrRd", map@data$rate2015.x, bins=bins)
-  #
+  # 
   # output$choroOD<- renderLeaflet({
   # leaflet(data = map) %>%
   #   setView(-96, 37.8, 4) %>%

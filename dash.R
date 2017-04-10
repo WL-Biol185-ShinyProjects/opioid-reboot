@@ -15,8 +15,8 @@ sidebar<- dashboardSidebar(
     #menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard"), badgeColor = "maroon" ),
     menuItem("National Opioid Trends", tabName = "national", icon = icon("arrow-right"), badgeColor = "maroon"),
     menuItem("Connecticut Opioid Trends", tabName = "Connecticut", icon = icon("arrow-right"), badgeColor = "maroon"),
-    menuItem("Demographics and Drugs", tabName = "demographics", icon = icon("pencil"), badgeColor = "maroon"),
-    menuItem("Contributing Factors", tabName = "factors", icon = icon("th"), badgeColor = "maroon")
+    menuItem("Demographics", tabName = "demographics", icon = icon("pencil"), badgeColor = "maroon"),
+    menuItem("Opiods", tabName = "factors", icon = icon("th"), badgeColor = "maroon")
   ))
 
 body <- dashboardBody(tabItems( tabItem(tabName = "national", 
@@ -30,11 +30,12 @@ body <- dashboardBody(tabItems( tabItem(tabName = "national",
                                         fluidRow(plotOutput("CTODLocations"),
                                                   plotOutput("CTODTreatmentComparison")
                                         )),
-                                tabItem(tabName = "demographics", h2("Demographics and Drugs"),
+                                tabItem(tabName = "demographics", h2("Demographics"),
                                         fluidRow(plotOutput("racialDemographics")
                                                  )
                               ),
-                              tabItem(tabName = "factors", h2("Drug Comparisons"), fluidRow(plotOutput("drugComparisons"))) 
+                              tabItem(tabName = "factors", h2("Opioid Comparisons"), fluidRow(plotOutput("drugComparisons")
+                                                                                            )) 
                                               
                      
 ))
