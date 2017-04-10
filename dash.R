@@ -29,7 +29,11 @@ body <- dashboardBody(tabItems( tabItem(tabName = "national",
                                         h2("Connecticut Opioid Trends"),
                                         fluidRow(plotOutput("CTODLocations"),
                                                   plotOutput("CTODTreatmentComparison")
-                                        )
+                                        )),
+                                tabItem(tabName = "demographics", h2("Demographics and Drugs"),
+                                        fluidRow(plotOutput("racialDemographics")
+                                                 )
                               )
                      )
 )
+
