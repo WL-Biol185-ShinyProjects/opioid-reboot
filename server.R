@@ -15,10 +15,10 @@ library(tidyverse)
 #stateAbbrev <- read.csv("~/opioid-reboot/stateAbbrev.csv")
 odCT<- read.csv("~/opioid-reboot/odCT.csv")
 TreatmentCT <- read.csv("~/opioid-reboot/TreatmentCT.csv")
-ODbyDrug <- read_csv("~/opioid-reboot/ODbyDrug.csv")
-tidyCBS <- read_csv("~/opioid-reboot/changeByStateTable.csv")
-merged <- read_csv("~/opioid-reboot/merged.txt")
-merged2 <- read_csv("~/opioid-reboot/merged2.txt")
+ODbyDrug <- read.csv("~/opioid-reboot/ODbyDrug.csv")
+tidyCBS <- read.csv("~/opioid-reboot/changeByStateTable.csv")
+merged <- read.csv("~/opioid-reboot/merged.txt")
+merged2 <- read.csv("~/opioid-reboot/merged2.txt")
 #Building important things for choro
 # OpiClaimsbyState <- natlClaims %>%
 #   group_by(ProviderState) %>%

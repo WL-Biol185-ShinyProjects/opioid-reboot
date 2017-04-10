@@ -33,7 +33,9 @@ body <- dashboardBody(tabItems( tabItem(tabName = "national",
                                 tabItem(tabName = "demographics", h2("Demographics and Drugs"),
                                         fluidRow(plotOutput("racialDemographics")
                                                  )
-                              )
-                     )
-)
+                              ),
+                              tabItem(tabName = "factors", h2("Drug Comparisons"), fluidRow(plotOutput("drugComparisons"))) 
+                                              
+                     
+))
 
