@@ -19,11 +19,12 @@ library(leaflet)
 library(rgdal)
 
 
-ODrateState <- X2013_2015_death_data
+ODrateState <-  read.csv("~/opioid-reboot/cdcOD.csv")
+stateAbbrev <- read.csv("~/opioid-reboot/stateAbbrev.csv")
 
 
 names(ODrateState)[names(ODrateState) == 'State'] <- 'X1'
-ODState <- left_join(ODrateState, StateAbbrev, by = "X1")
+ODState <- left_join(ODrateState, stateAbbrev, by = "X1")
 
 
 write.table(ODState, file = "ODState.txt")
@@ -34,10 +35,10 @@ data <- read.table("ODState.txt")
 ```
 
 ```{r}
-merged   <- left_join(map@data, data, by = c("NAME" = "State"))
-map@data <- merged
+merged2   <- left_join(map@data, data, by = c("NAME" = "State"))
+map@data <- merged2
 
-View(merged)
+View(merged2)
 ```
 
 
@@ -45,30 +46,30 @@ View(merged)
 library(leaflet)
 
 bins <- c(0,11,13.5,16,18.5,21,41.5)
-pal  <- colorBin("YlOrRd", map@data$X2015Rate.x, bins=bins)
+pal  <- colorBin("YlOrRd", map@data$rate2015.x, bins=bins)
 
   
 leaflet(data = map) %>%
   setView(-96, 37.8, 4) %>%
   addTiles()        %>%
   addPolygons(
-    fillColor = ~pal(X2015Rate.x),
+    fillColor = ~pal(rate2015.x),
     weight = 2,
     opacity = 1,
     color = "white",
     dashArray = "3",
     fillOpacity = 0.7)
-    # highlight = highlightOptions(
-    # weight = 5,
-    # color = "#666",
-    # dashArray = "",
-    #   fillOpacity = 0.7,
-    #   bringToFront = TRUE))
-    # label = labels
-    # labelOptions = labelOptions(
-    #   style = list("font-weight" = "normal", padding = "3px 8px"),
-    #   textsize = "15px",
-    #   direction = "auto")))
+     highlight = highlightOptions(
+     weight = 5,
+     color = "#666",
+     dashArray = "",
+       fillOpacity = 0.7,
+       bringToFront = TRUE)
+     label = labels
+     labelOptions = labelOptions(
+       style = list("font-weight" = "normal", padding = "3px 8px"),
+       textsize = "15px",
+       direction = "auto")
 
 ```
 

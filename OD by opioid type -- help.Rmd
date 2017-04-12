@@ -37,10 +37,9 @@ MorphineCount <- odCT %>%
 # View(MethadCount)
 # View(MorphineCount)
 
-ODbyDrug <- read_csv("~/opioid-reboot/ODbyDrug.csv")
+# ODbyDrug <- read_csv("~/opioid-reboot/ODbyDrug.csv")
+ODbyDrug <- read.csv("~/opioid-reboot/ODbyDrug.csv")
 
 ODbyDrug %>% 
   ggplot(aes(Drug, Odnumber)) + geom_bar(stat='identity')
-
-
 ```

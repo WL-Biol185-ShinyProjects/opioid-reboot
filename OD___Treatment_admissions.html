@@ -138,14 +138,14 @@ library(dplyr)</code></pre>
 <pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
 <pre><code>## filter(): dplyr, stats
 ## lag():    dplyr, stats</code></pre>
-<pre class="r"><code>odCT&lt;- readr::read_csv(&quot;dataSets/odCT.csv&quot;)</code></pre>
+<pre class="r"><code>odCT &lt;- read_csv(&quot;~/opioid-reboot/odCT.csv&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_character(),
 ##   Age = col_integer()
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre class="r"><code>treatCT &lt;- readr::read_csv(&quot;dataSets/TreatmentCT.csv&quot;)</code></pre>
+<pre class="r"><code>TreatmentCT &lt;- read_csv(&quot;~/opioid-reboot/TreatmentCT.csv&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   FiscalYear = col_integer(),
@@ -154,7 +154,7 @@ library(dplyr)</code></pre>
 ##   `Unduplicated Clients` = col_integer(),
 ##   TownGeo = col_character()
 ## )</code></pre>
-<pre class="r"><code>AdmissionsbyTown &lt;- treatCT %&gt;%
+<pre class="r"><code>AdmissionsbyTown &lt;- TreatmentCT %&gt;%
   group_by(Town) %&gt;%
   summarise(SumAdmissions = sum(Admissions))
 
