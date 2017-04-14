@@ -2,7 +2,7 @@ library(shiny)
 library(leaflet)
 library(ggplot2)
 library(dplyr)
-library(rgdal)
+#library(rgdal)
 library(readr)
 library(tidyverse)
 
