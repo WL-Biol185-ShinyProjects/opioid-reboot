@@ -14,6 +14,7 @@ library(tidyverse)
 #natlClaims <- read.csv("~/opioid-reboot/natlClaims.csv")
 #stateAbbrev <- read.csv("~/opioid-reboot/stateAbbrev.csv")
 
+
 odCT<- read.csv("odCT.csv")
 TreatmentCT <- read.csv("TreatmentCT.csv")
 ODbyDrug <- read.csv("ODbyDrug.csv")
@@ -23,20 +24,20 @@ AdmissionsbyTown <- TreatmentCT %>%
   group_by(Town) %>%
   summarise(SumAdmissions = sum(Admissions))
 
-
-ODbyCity <- odCT %>%
-  group_by(deathCity) %>%
-  count(deathCity)
-names(ODbyCity)[names(ODbyCity) == 'deathCity'] <- 'Town'
-AbT <- mutate_each(AdmissionsbyTown, funs(toupper))
-TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
-#names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
-#names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
-#TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
-#fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
-
-#coef(fit)
-#end here
+#BROKEN GRAPH START HERE
+# ODbyCity <- odCT %>%
+#   group_by(deathCity) %>%
+#   count(deathCity)
+# names(ODbyCity)[names(ODbyCity) == 'deathCity'] <- 'Town'
+# AbT <- mutate_each(AdmissionsbyTown, funs(toupper))
+# TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
+# names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
+# names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
+# TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
+# fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
+# 
+# coef(fit)
+#BROKEN GRAPH end here
 # merged <- read.csv("~/opioid-reboot/merged.txt")
 # merged2 <- read.csv("~/opioid-reboot/merged2.txt")
 #Building important things for choro
@@ -158,6 +159,18 @@ shinyServer(function(input, output){
 
   #ODTREATMEANTSADMINSTCT GRAPH START
   output$CTODTreatmentComparison <- renderPlot({
+    ODbyCity <- odCT %>%
+      group_by(deathCity) %>%
+      count(deathCity)
+    names(ODbyCity)[names(ODbyCity) == 'deathCity'] <- 'Town'
+    AbT <- mutate_each(AdmissionsbyTown, funs(toupper))
+    TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
+    names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
+    names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
+    TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
+    fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
+    
+    coef(fit)
   TreatmentOD %>%
     filter(Overdoses > 10)%>%
     ggplot(aes(AddictionTreatmentAdmissions, Overdoses, color = Town)) + geom_point() +
