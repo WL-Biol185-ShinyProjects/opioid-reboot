@@ -11,7 +11,7 @@ library(shinythemes)
 header <- dashboardHeader(title= "Menu")
 sidebar<- dashboardSidebar(    
   sidebarMenu(
-    #menuItem("About", tabName = "about", icon = icon("book"), badgeColor = "maroon"),  
+    menuItem("About", tabName = "about", icon = icon("book"), badgeColor = "maroon"),  
     #menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard"), badgeColor = "maroon" ),
     menuItem("National Opioid Trends", tabName = "national", icon = icon("arrow-right"), badgeColor = "maroon"),
     menuItem("Connecticut Opioid Trends", tabName = "Connecticut", icon = icon("arrow-right"), badgeColor = "maroon"),
@@ -19,7 +19,10 @@ sidebar<- dashboardSidebar(
     menuItem("Opiods", tabName = "factors", icon = icon("th"), badgeColor = "maroon")
   ))
 
-body <- dashboardBody(tabItems( tabItem(tabName = "national", 
+body <- dashboardBody(tabItems(   tabItem(tabName = "about", 
+                                  h2("About Opiod Abuse"),
+                                  fluidRow(textOutput("textOut"), leafletOutput("CTmap"))),
+                                tabItem(tabName = "national", 
                                         h2("National Opioid Trends"),
                                         fluidRow(plotOutput("claimsByState", height = 250, width = 1000),
                                                  plotOutput("prescribersByState", height = 250, width = 1000)
