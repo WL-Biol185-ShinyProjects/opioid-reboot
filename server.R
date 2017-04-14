@@ -20,23 +20,23 @@ TreatmentCT <- read.csv("TreatmentCT.csv")
 ODbyDrug <- read.csv("ODbyDrug.csv")
 tidyCBS <- read.csv("changeByStateTable.csv")
 
-#AdmissionsbyTown <- TreatmentCT %>%
-#  group_by(Town) %>%
-#  summarise(SumAdmissions = sum(Admissions))
+AdmissionsbyTown <- TreatmentCT %>%
+  group_by(Town) %>%
+  summarise(SumAdmissions = sum(Admissions))
 
 #BROKEN GRAPH START HERE
-# ODbyCity <- odCT %>%
-#   group_by(deathCity) %>%
-#   count(deathCity)
-# names(ODbyCity)[names(ODbyCity) == 'deathCity'] <- 'Town'
-# AbT <- mutate_each(AdmissionsbyTown, funs(toupper))
-# TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
-# names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
-# names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
-# TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
-# fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
+ ODbyCity <- odCT %>%
+   group_by(deathCity) %>%
+   count(deathCity)
+ names(ODbyCity)[names(ODbyCity) == 'deathCity'] <- 'Town'
+ AbT <- mutate_each(AdmissionsbyTown, funs(toupper))
+ TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
+ names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
+ names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
+ TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
+ fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
 # 
-# coef(fit)
+ coef(fit)
 #BROKEN GRAPH end here
 # merged <- read.csv("~/opioid-reboot/merged.txt")
 # merged2 <- read.csv("~/opioid-reboot/merged2.txt")
