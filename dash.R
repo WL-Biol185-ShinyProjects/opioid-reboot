@@ -8,7 +8,7 @@ library(shinythemes)
 #fluidPage(
 #titlePanel("Local Factors Contributing to Opioid Overdoses in Connecticut"),
 
-header <- dashboardHeader(title= "Menu")
+header <- dashboardHeader(title= "Opioid Abuse")
 sidebar<- dashboardSidebar(    
   sidebarMenu(
     menuItem("About", tabName = "about", icon = icon("book"), badgeColor = "maroon"),  
@@ -16,7 +16,7 @@ sidebar<- dashboardSidebar(
     menuItem("National Opioid Trends", tabName = "national", icon = icon("arrow-right"), badgeColor = "maroon"),
     menuItem("Connecticut Opioid Trends", tabName = "Connecticut", icon = icon("arrow-right"), badgeColor = "maroon"),
     menuItem("Demographics", tabName = "demographics", icon = icon("pencil"), badgeColor = "maroon"),
-    menuItem("Opiods", tabName = "factors", icon = icon("th"), badgeColor = "maroon")
+    menuItem("Opioids", tabName = "factors", icon = icon("th"), badgeColor = "maroon")
   ))
 
 body <- dashboardBody(tabItems(   tabItem(tabName = "about", 
