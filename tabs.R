@@ -32,7 +32,10 @@ tabs <- # First tab content
     #             radioButtons("plot_type", "Filters",
     #                          c("Average Part D Prescribers", "Average Opioid Claims")
     #              )))),
-    tabItem(tabName = "national", h2("National Opioid Trends"),
+     # tabItem(tabName = "background", h2("Background"),
+     #         backgroundTab),
+    
+     tabItem(tabName = "national", h2("National Opioid Trends"),
             nationalTab),
     
     #Connecticut Tab
@@ -56,5 +59,7 @@ tabs <- # First tab content
                     #  sliderInput("slider", "Number of observations:", 1, 100, 50)
                     #))
        
- h2("Conributing Factors"), factorsTab))
-    )))
+ h2("Conributing Factors")
+        ))))
+
+ 

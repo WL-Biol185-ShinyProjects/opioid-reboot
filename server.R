@@ -102,6 +102,9 @@ shinyServer(function(input, output){
     # draw the histogram with the specified number of bins
    # histPlot <- hist(x, breaks = bins, col = 'darkgray', border = 'white')
     #})
+  
+ # output$background
+  
   #TEST HIST PLOT END
   #OD LOCATION BAR GRAPH START
   output$CTODLocations <- renderPlot({
@@ -155,53 +158,53 @@ shinyServer(function(input, output){
   #CLAIMS BY STATE END
 
   #MEDICARE CLAIMS BY STATE CHORO START
-#   output$choroClaims<- renderLeaflet({
-#    #
-#   # where issue is?
-#  #merged   <- left_join(map@data, data, by = c("NAME" = "State"))
-#   map@data <- merged
-#   bins <- c(0,100000,500000,1000000,1500000,2500000,5000000,Inf)
-#   pal  <- colorBin("YlOrRd", map@data$TotalClaims, bins=bins)
-#   leaflet( map) %>%
-# #  leaflet(merged)%>%
-#      setView(-96, 37.8, 4) %>%
-#      addTiles()        %>%
-#      addPolygons(
+#  output$choroClaims<- renderLeaflet({
+# #    #
+# #   # where issue is?
+# #  #merged   <- left_join(map@data, data, by = c("NAME" = "State"))
+# map@data <- merged
+# bins <- c(0,100000,500000,1000000,1500000,2500000,5000000,Inf)
+# pal  <- colorBin("YlOrRd", map@data$TotalClaims, bins=bins)
+#  leaflet( map) %>%
+# leaflet(merged)%>%
+# setView(-96, 37.8, 4) %>%
+# addTiles()        %>%
+# addPolygons(
 #        fillColor = ~pal(TotalClaims),
 #        weight = 2,
 #        opacity = 1,
 #        color = "white",
 #        dashArray = "3",
 #        fillOpacity = 0.7)
-#    })
-  #MEDICARE CLAIMS BY STATE CHORO END
-
-  #OD CHORO START
-  # bins <- c(0,11,13.5,16,18.5,21,41.5)
-  # pal  <- colorBin("YlOrRd", map@data$rate2015.x, bins=bins)
-  # 
-  # output$choroOD<- renderLeaflet({
-  # leaflet(data = map) %>%
-  #   setView(-96, 37.8, 4) %>%
-  #   addTiles()        %>%
-  #   addPolygons(
-  #     fillColor = ~pal(rate2015.x),
-  #     weight = 2,
-  #     opacity = 1,
-  #     color = "white",
-  #     dashArray = "3",
-  #     fillOpacity = 0.7)
-  # highlight = highlightOptions(
-  #   weight = 5,
-  #   color = "#666",
-  #   dashArray = "",
-  #   fillOpacity = 0.7,
-  #   bringToFront = TRUE)
-  # label = labels
-  # labelOptions = labelOptions(
-  #   style = list("font-weight" = "normal", padding = "3px 8px"),
-  #   textsize = "15px",
-  #   direction = "auto")})
+# # #    })
+# #   #MEDICARE CLAIMS BY STATE CHORO END
+# # 
+# #   #OD CHORO START
+# #   # bins <- c(0,11,13.5,16,18.5,21,41.5)
+# #   # pal  <- colorBin("YlOrRd", map@data$rate2015.x, bins=bins)
+# #   #
+# #   # output$choroOD<- renderLeaflet({
+# #   # leaflet(data = map) %>%
+# #   #   setView(-96, 37.8, 4) %>%
+# #   #   addTiles()        %>%
+# #   #   addPolygons(
+# #   #     fillColor = ~pal(rate2015.x),
+# #   #     weight = 2,
+# #   #     opacity = 1,
+# #   #     color = "white",
+# #   #     dashArray = "3",
+# #   #     fillOpacity = 0.7)
+# #   # highlight = highlightOptions(
+# #   #   weight = 5,
+# #   #   color = "#666",
+# #   #   dashArray = "",
+#   #   fillOpacity = 0.7,
+#   #   bringToFront = TRUE)
+#   # label = labels
+#   # labelOptions = labelOptions(
+#   #   style = list("font-weight" = "normal", padding = "3px 8px"),
+#   #   textsize = "15px",
+#   #   direction = "auto")})
   #OD CHORO END
  })
 
