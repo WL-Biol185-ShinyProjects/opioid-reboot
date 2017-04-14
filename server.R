@@ -138,7 +138,7 @@ shinyServer(function(input, output){
 
   #ODTREATMEANTSADMINSTCT GRAPH START
   output$CTODTreatmentComparison <- renderPlot({
-  TreatmentOD %>%
+  TreatmentCT %>%
     filter(Overdoses > 10)%>%
     ggplot(aes(AddictionTreatmentAdmissions, Overdoses, color = Town)) + geom_point() +
     geom_abline(slope = coef(fit)[2], intercept = coef(fit)[1]) })
