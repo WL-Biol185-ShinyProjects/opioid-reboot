@@ -34,10 +34,6 @@ names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
 names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
 TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
 
-
-fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
-#summary(fit)
-coef(fit)
 # merged <- read.csv("~/opioid-reboot/merged.txt")
 # merged2 <- read.csv("~/opioid-reboot/merged2.txt")
 #Building important things for choro
