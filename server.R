@@ -159,18 +159,18 @@ shinyServer(function(input, output){
 
   #ODTREATMEANTSADMINSTCT GRAPH START
   output$CTODTreatmentComparison <- renderPlot({
-    ODbyCity <- odCT %>%
-      group_by(deathCity) %>%
-      count(deathCity)
-    names(ODbyCity)[names(ODbyCity) == 'deathCity'] <- 'Town'
-    AbT <- mutate_each(AdmissionsbyTown, funs(toupper))
-    TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
-    names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
-    names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
-    TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
-    fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
-    
-    coef(fit)
+    # ODbyCity <- odCT %>%
+    #   group_by(deathCity) %>%
+    #   count(deathCity)
+    # names(ODbyCity)[names(ODbyCity) == 'deathCity'] <- 'Town'
+    # AbT <- mutate_each(AdmissionsbyTown, funs(toupper))
+    # TreatmentOD <- inner_join(AbT, ODbyCity, by = "Town")
+    # names(TreatmentOD)[names(TreatmentOD) == 'n'] <- 'Overdoses'
+    # names(TreatmentOD)[names(TreatmentOD) == 'SumAdmissions'] <- 'AddictionTreatmentAdmissions'
+    # TreatmentOD$AddictionTreatmentAdmissions <-as.numeric(TreatmentOD$AddictionTreatmentAdmissions)
+    # fit <- lm(Overdoses ~ AddictionTreatmentAdmissions, data = TreatmentOD)
+    # 
+    # coef(fit)
   TreatmentOD %>%
     filter(Overdoses > 10)%>%
     ggplot(aes(AddictionTreatmentAdmissions, Overdoses, color = Town)) + geom_point() +
