@@ -20,9 +20,9 @@ TreatmentCT <- read.csv("TreatmentCT.csv")
 ODbyDrug <- read.csv("ODbyDrug.csv")
 tidyCBS <- read.csv("changeByStateTable.csv")
 
-AdmissionsbyTown <- TreatmentCT %>%
-  group_by(Town) %>%
-  summarise(SumAdmissions = sum(Admissions))
+#AdmissionsbyTown <- TreatmentCT %>%
+#  group_by(Town) %>%
+#  summarise(SumAdmissions = sum(Admissions))
 
 #BROKEN GRAPH START HERE
 # ODbyCity <- odCT %>%
